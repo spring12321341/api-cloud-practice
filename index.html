@@ -14,13 +14,13 @@
             button.addEventListener('click', async () => {
                 button.innerText = 'Загрузка...';
 
-                const responce = await fetch('https://jsonplaceholder.typicode.com/users');
+                const responce = await fetch('https://jsonplaceholder.typicode.com/posts');
                 const user = await responce.json();
 
                 list.innerHTML = '';
-                user.forEach(user => {
+                user.forEach(post => {
                     const li = document.createElement('li');
-                    li.innerText = user.name + '('+ user.email + ')';
+                    li.innerText = post.title;
                     list.appendChild(li);
                 });
                 button.innerText = 'данные загружены!';
