@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title> мой первый API клиент</title>
+    </head>
+    <body>
+        <h1>список пользователя из облака</h1>
+        <button id="loadBnt">загрузить данные через API</button>
+        <ul id="userList"></ul>
+
+        <script>
+            const  button = document.getElementById('loadBnt');
+            const list = document.getElementById('userList');
+
+            button.addEventListener('click', async () => {
+                button.innerText = 'Загрузка...';
+
+                const responce = await fetch('https://jsonplaceholder.typicode.com/users');
+                const user = await responce.json();
+
+                list.innerHTML = '';
+                user.forEach(user => {
+                    const li = document.createElement('li');
+                    li.innerText = user.name + '('+ user.email + ')';
+                    list.appendChild(li);
+                });
+                button.innerText = 'данные загружены!';
+            })
+        </script>
+    </body>
+</html>
